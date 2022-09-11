@@ -7,11 +7,11 @@ console.log("working");
 let map = L.map("mapid", {
     
     center: [
-        
+        // Coords of Los Angeles, California
         34.0522, -118.2437
     
     ], 
-    
+    // Zoom into downtown LA
     zoom: 14
     
 });
