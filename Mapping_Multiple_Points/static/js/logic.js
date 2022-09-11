@@ -26,7 +26,9 @@ let cityData = cities;
 cityData.forEach(function(city) {
     console.log(city)
     L.circleMarker(city.location, {
+        // Radius circle of population divided by 20,000 pixels
         radius: city.population/200000,
+        // Circle marker stroke color of orange and lineweight of 4
         color: "orange",
         weight: 4
     })
