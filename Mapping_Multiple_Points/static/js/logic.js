@@ -7,12 +7,12 @@ console.log("working");
 let map = L.map("mapid", {
     
     center: [
-        
-        34.0522, -118.2437
+        // Map centered on NA
+        40.7, -94.5
     
     ], 
-    
-    zoom: 14
+    // Map zoomed to show continental America
+    zoom: 4
     
 });
 
@@ -24,11 +24,14 @@ let cityData = cities;
 // Loop through the cities array and create one marker for each city.
 
 cityData.forEach(function(city) {
-
     console.log(city)
-
-    L.marker(city.location).addTo(map);
-
+    L.circleMarker(city.location, {
+        radius: city.population/200000,
+        color: "orange",
+        weight: 4
+    })
+    .bindPopup("<h2>" + city.city + ", " + city.state + "</h2> <hr> <h3>Population " + city.population.toLocaleString() + "</h3>")
+    .addTo(map);
 });
 
 
@@ -45,7 +48,7 @@ cityData.forEach(function(city) {
 
 // We create the tile layer that will be the background of our map.
 
-let streets = L.tileLayer('https://api.mapbox.com/styles/v1/mapbox/streets-v11/tiles/{z}/{x}/{y}?access_token={accessToken}', {
+let streets = L.tileLayer('https://api.mapbox.com/styles/v1/mapbox/dark-v10/tiles/{z}/{x}/{y}?access_token={accessToken}', {
     
     attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
     maxZoom: 18,
